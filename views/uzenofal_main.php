@@ -1,25 +1,18 @@
 <div class="data">
-    <div class="login-container">
+    <div class="data-container">
         <h1>Üzenőfal</h1>
-
-        <!-- Üzenet küldése -->
-        <form method="POST" action="">
+        <form method="POST" action="<?= SITE_ROOT ?>uzenofalkuldes">
             <input type="text" name="message" placeholder="Írd ide az üzeneted..." required>
             <input type="submit" value="Küldés">
         </form>
 
-        <!-- Hibaüzenet megjelenítése -->
-        <?php if (isset($errorMessage)): ?>
-            <p style="color: red;"><?php echo htmlspecialchars($errorMessage); ?></p>
-        <?php endif; ?>
+        <!-- Display Messages -->
+            <?php $messages = $data['messages']?>
 
-        <!-- Üzenetek megjelenítése -->
-        <?php if (isset($uzenofal) && is_array($uzenofal) && count($uzenofal) > 0): ?>
-            <?php foreach ($uzenofal as $message): ?>
+            <?php foreach ($messages as $message): ?>
                 <div class="message">
                     <p id="name"><strong><?php echo htmlspecialchars($message['Vezeteknev']) . ' ' . htmlspecialchars($message['Keresztnev']); ?></strong></p>
                     <?php
-                    // Az Ido mező átkonvertálása olvashatóbb formátumra
                     $datetime = new DateTime($message['Ido']);
                     $formattedDate = $datetime->format('Y.m.d H:i');
                     ?>
@@ -29,9 +22,6 @@
                     </div>
                 </div>
             <?php endforeach; ?>
-        <?php else: ?>
-            <p>Nincs még üzenet.</p>
-        <?php endif; ?>
-
+       
     </div>
 </div>

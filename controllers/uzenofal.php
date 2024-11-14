@@ -1,41 +1,33 @@
-
 <?php
 class Uzenofal_Controller
 {
-    public $baseName = 'uzenofal';  // A lap neve
-
+    public $baseName = 'uzenofal';
+   
     public function main(array $vars)
     {
-        include_once(SERVER_ROOT . 'models/uzenofal_model.php');
-        $messageModel = new Uzenofal_Model();
+        include_once(SERVER_ROOT.'models/uzenofal_model.php');
+        $uzenofalModel = new Uzenofal_Model;
 
-        // Hibaüzenet előkészítése
-        $errorMessage = null;
+        // Retrieve messages from the model
+        $messages = $uzenofalModel->getMessages();
+        
+        // Initialize the view and assign data
+        $view = new View_Loader($this->baseName . '_main');
+        
 
-        // Üzenet küldés kezelése
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message'])) {
-            // Ellenőrizzük, hogy van-e bejelentkezett felhasználó
-            if (isset($_SESSION['id'])) {
-                // Üzenet és felhasználó ID paraméterek átadása
-                $vars = [
-                    'message' => $_POST['message'],
-                    'user_id' => $_SESSION['id'] // Felhasználó ID
-                ];
 
-                // Az üzenet elküldése
-                $messageModel->sendMessage($vars);
-            } else {
-                // Ha nincs bejelentkezve a felhasználó, hibaüzenet megjelenítése
-                $errorMessage = "Be kell jelentkezned, hogy üzenetet küldj!";
-            }
+        $view->assign('messages', $messages);
+    }
+
+    public function sendMessage(array $vars)
+    {
+        $uzenofalModel = new Uzenofal_Model;
+
+        // Check if a message exists in $vars
+        if (isset($vars['message'])) {
+            $uzenofalModel->sendMessage($vars);
         }
-
-        // Üzenetek lekérdezése
-        $messages = $messageModel->getMessages();
-
-        // Betöltjük a nézetet, és átadjuk az üzeneteket
-        $view = new View_Loader($this->baseName.'_main');
-        $view->assign('uzenofal', $messages); // Üzenetek átadása
-        $view->assign('errorMessage', $errorMessage); // Hibák megjelenítése
+        
+        
     }
 }
