@@ -60,7 +60,6 @@ if(! file_exists($target))
 	$controllerfile = "error";
 }
 
-echo "Controller file: " . $target . "<br>";
 
 
 include_once($target);

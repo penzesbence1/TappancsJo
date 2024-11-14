@@ -26,7 +26,7 @@ class Beleptet_Model
 						$_SESSION['userlastname'] =  $felhasznalo[0]['vezeteknev'];
 						$_SESSION['userfirstname'] =  $felhasznalo[0]['keresztnev'];
 						$_SESSION['userlevel'] = $felhasznalo[0]['jog_id'];
-						var_dump($_SESSION['userlevel']);
+						
 
 						Menu::setMenu();
 					}

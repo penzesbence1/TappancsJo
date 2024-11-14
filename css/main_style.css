@@ -1,12 +1,20 @@
 
 
+nav{
+    padding: 0px;
+    margin: 0px;
+}
 
-
-header, footer {
+header {
     padding: 0.5em; 
     color: white;
-    background-color: gray;
+    background-color: rgb(35, 122, 208);
     clear: left;
+}
+
+footer{
+    align-items: center;
+    text-align: center;
 }
 h1.header {
     padding: 0;
@@ -19,13 +27,22 @@ aside {
     display: table-cell;
     width: 160px;
     margin: 0;
-    padding: 1em;
+    padding: 10px;
+    background-color: rgb(35, 122, 208);
+    height: max-content;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 section {
     display: table-cell;
-    border-left: 1px solid gray;
+    
     padding: 1em;
     vertical-align: top;
+   
+    
+    text-align: center;
+    max-height: 10px;
+    
 }
 ul.menu {
     float:left;
@@ -33,7 +50,7 @@ ul.menu {
     padding:0;
     margin:0;
     list-style-type:none;
-    background-color: lightblue;
+    display: block;
 }        
 ul.menu a {
     float:left;
@@ -41,14 +58,18 @@ ul.menu a {
     text-decoration:none; /* Ne legyen aláhúzva a link. */
     color:white;
     background-color:navy;
-    padding:0.2em 0.6em;
+    padding:0.3em 0.8em;
     border-right:1px solid white;
+    border-radius: 10px;
+    margin: 10px;
+    
 }
 ul.menu a.selected{
     background-color: blue;
 }
-ul.menu a:hover { background-color:#ff3300} /* Az egérkurzorra színváltással reagál a menüpont. */
-ul.menu li { display:inline } /* Ez a sor oldja meg, hogy a menüpontok egymás mellé kerüljenek. */
+ul.menu a:hover { background-color: lightblue;} /* Az egérkurzorra színváltással reagál a menüpont. */
+ul.menu a:hover {color: black;}
+ul.menu li { list-style: none;} /* Ez a sor oldja meg, hogy a menüpontok egymás mellé kerüljenek. */
 
 
 /* CSS for basic styling (optional) */
@@ -57,7 +78,7 @@ body {
     line-height: 1.6;
     padding: 20px;
     color: rgb(0, 0, 0);
-    background-color: rgb(63, 83, 156);
+    background-color: rgb(64, 147, 230);
     padding: 0px;
     margin: 0px;
     color: #eaf7ff;
@@ -87,6 +108,9 @@ body {
     padding: 10px;
     margin-top: 0px;
 
+}
+#login{
+    text-align: left;
 }
 .login-container{
   
@@ -133,26 +157,14 @@ body {
     max-width: 500px;
     margin: 0 auto;
     align-items: center;  
-    color: black;
-    background-color: rgb(235, 235, 235);
-    padding: 10px;
-    border-radius: 10px;
-    border-bottom: solid 5px rgba(0, 0, 0, 0.586);
-    border-right: solid 5px rgba(0, 0, 0, 0.586);
+    color: white;
+
+   
+  
 
 }
 
-.data {
-    max-width: 500px;
-    text-align: center;
-    align-items: center;
-    background-color: rgb(63, 83, 156);
-    border-color: 3px solid blue;
-    margin: auto;
-    padding: 10px;
-    padding-bottom: 30px;
-    margin-bottom: 40px;
-}
+
 
 
 .container {
@@ -170,7 +182,15 @@ h1 {
 form {
     display: flex;
     flex-direction: column;
+    align-items: center; /* A form elemek középre kerülnek */
+    text-align: center; /* Alapértelmezésként középre igazítja a tartalmat */
 }
+
+form label {
+    text-align: left; /* Minden szöveges elem balra igazítva */
+    width: 100%; /* Szélességük legyen 100%, hogy egy vonalban legyenek */
+}
+
 
 label {
     margin-top: 10px;
@@ -178,6 +198,7 @@ label {
 
 input, textarea {
     padding: 10px;
+    width: 20em;
     margin-top: 5px;
     font-size: 1rem;
     border: 1px solid #ccc;
@@ -190,6 +211,8 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
     margin-top: 20px;
+    width: 10em;
+  
 }
 
 input[type="submit"]:hover {

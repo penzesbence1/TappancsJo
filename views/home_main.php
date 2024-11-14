@@ -1,5 +1,5 @@
 <h2>
-    <br>Üdvözöljük az új rendszerünkben!<br>
-    <br>Jó munkát kívánunk a rendszerünkkel!<br>
-    <br>Kezdhet ...<br>
+    <br>Üdvözöljük a TAppancs rendszerében!<br>
+    <br>Jó munkát kívánunk!<br>
+    
 </h2>

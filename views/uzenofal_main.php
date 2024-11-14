@@ -1,7 +1,5 @@
-
-
 <div class="data">
-    <div class="data-container">
+    <div class="login-container">
         <h1>Üzenőfal</h1>
 
         <!-- Üzenet küldése -->
@@ -37,5 +35,3 @@
 
     </div>
 </div>
-
-

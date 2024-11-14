@@ -11,15 +11,16 @@
             <div id="user"><em><?= $_SESSION['userlastname']." ".$_SESSION['userfirstname'] ?></em></div>
             <h1 class="header">Tappancs</h1>
         </header>
+        
+        <aside>
         <nav>
             <?php echo Menu::getMenu($viewData['selectedItems']); ?>
         </nav>
-        <aside>
-             
         </aside>
         <section>
             <?php if($viewData['render']) include($viewData['render']); ?>
         </section>
-        <footer>&copy; NJE - GAMF - Informatika Tanszék <?= date("Y") ?></footer>
+        <footer>&copy; WEB2 Beadandó <?= date("Y") ?></footer>
+        <footer>Stecenkó Martin, Pénzes Bence</footer>
     </body>
 </html>

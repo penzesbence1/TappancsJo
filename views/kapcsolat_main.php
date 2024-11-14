@@ -1,5 +1,5 @@
 <div class="data">
-    <div class="data-container">
+    <div class="login-container">
         <h1>Kapcsolat</h1>
         <form method="POST" action="<?= SITE_ROOT ?>kapcsolatkuldes"> <!-- Az action itt a megfelelő PHP fájlra mutasson -->
             <label for="email">E-mail cím (kötelező)</label>

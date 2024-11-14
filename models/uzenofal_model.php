@@ -1,8 +1,14 @@
 <?php
-
 class Uzenofal_Model
 {
-    
+    private $pdo; // PDO kapcsolat
+
+    // Konstruktor, ami inicializálja az adatbázis kapcsolatot
+    public function __construct()
+    {
+        $this->pdo = Database::getConnection(); // Kapcsolódás a database.inc által
+    }
+
     // Üzenet küldése az adatbázisba
     public function sendMessage($vars)
     {
@@ -27,3 +33,5 @@ class Uzenofal_Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);  // Az üzenetek visszaadása
     }
 }
+
+
