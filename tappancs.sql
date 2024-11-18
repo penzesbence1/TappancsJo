@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Nov 14. 14:25
--- Kiszolgáló verziója: 10.4.28-MariaDB
--- PHP verzió: 8.2.4
+-- Létrehozás ideje: 2024. Nov 19. 00:29
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `tappancs`
 --
+CREATE DATABASE IF NOT EXISTS `tappancs` DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+USE `tappancs`;
 
 -- --------------------------------------------------------
 
@@ -43,10 +45,8 @@ CREATE TABLE `felhasznalok` (
 --
 
 INSERT INTO `felhasznalok` (`Felhasznalo_id`, `Vezeteknev`, `Keresztnev`, `Felhasznalonev`, `Email`, `Telefonszam`, `Jelszo`, `Jog_id`) VALUES
-(5, 'asd', 'asd', 'asdasd', 'asdasd@asdc.com', '', '$2y$10$/kgDNN5ootLouWZv.TH/je3c.H9ShCdcQ/r0JH4r53UlZUxCFH7W2', '__1'),
-(6, 'asd', 'sad', 'asdasdasdas', 'asd@asdsad.comasaaa', '', '$2y$10$SPEHrOk3KwySxH/22oYkJOFKl8U/KGKo.c1N7rUeB6JWB6Eu6f.Au', '__1'),
-(7, 'Kis', 'Satya', 'asd', 'kissatya@satya.com', '', '$2y$10$XIU5jVw/PJIyHHjvkDst1ueVYxBVHfs/HwNgh3xw5bP64/CQD2i0W', '1__'),
-(8, 'Pénzes', 'Bence', 'ben', 'asd@gmail.com', '22333', '$2y$10$8RtKatq0bZPkc2t19y8Iv.OB1GU7q2fB1M8Kxg95ex31zVCw4ZEzS', '__1');
+(10, 'Admin', 'József', 'admin', 'admi@admin.com', '06301234567', '$2y$10$yF5YFswx6GNMLcFQlCLl5uA2RYshtQ4BLVt9DW9v1X8ioSJOG3mWa', '1__'),
+(11, 'Asd', 'Milán', 'asd', 'asd@asd.com', '', '$2y$10$DBK2pctBHeocXyFpSMNZteARL6mPEC6IaxCE82F5ArYugKmi7OuLK', '__1');
 
 -- --------------------------------------------------------
 
@@ -75,6 +75,7 @@ INSERT INTO `jogok` (`Jog_id`, `Jog_nev`) VALUES
 --
 
 CREATE TABLE `kapcsolat` (
+  `Kapcsolat_Id` int(11) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Telefonszam` varchar(20) NOT NULL,
   `Uzenet` varchar(2000) NOT NULL,
@@ -85,10 +86,8 @@ CREATE TABLE `kapcsolat` (
 -- A tábla adatainak kiíratása `kapcsolat`
 --
 
-INSERT INTO `kapcsolat` (`Email`, `Telefonszam`, `Uzenet`, `Ido`) VALUES
-('asdasd@asdc.com', '', 'asd', '2024-11-13 14:59:15'),
-('asd@asdsad.com', '', 'asd', '2024-11-13 14:59:19'),
-('MOSTASD@asd.com', '', 'asd', '2024-11-13 14:59:52');
+INSERT INTO `kapcsolat` (`Kapcsolat_Id`, `Email`, `Telefonszam`, `Uzenet`, `Ido`) VALUES
+(1, 'email@mail.com', '06301234567', 'Üdv, nem jó az oldal.', '2024-11-19 00:18:54');
 
 -- --------------------------------------------------------
 
@@ -123,6 +122,7 @@ INSERT INTO `menu` (`jog`, `nev`, `url`) VALUES
 --
 
 CREATE TABLE `uzenofal` (
+  `Uzenet_Id` int(11) NOT NULL,
   `Felhasznalo_id` int(11) NOT NULL,
   `Uzenet` varchar(2000) NOT NULL,
   `Ido` datetime NOT NULL
@@ -132,8 +132,10 @@ CREATE TABLE `uzenofal` (
 -- A tábla adatainak kiíratása `uzenofal`
 --
 
-INSERT INTO `uzenofal` (`Felhasznalo_id`, `Uzenet`, `Ido`) VALUES
-(5, 'csaocsao', '2024-11-13 15:41:48');
+INSERT INTO `uzenofal` (`Uzenet_Id`, `Felhasznalo_id`, `Uzenet`, `Ido`) VALUES
+(1, 11, 'Sziasztok!', '2024-11-19 00:15:12'),
+(6, 11, 'asd', '2024-11-19 00:23:13'),
+(7, 11, 'asd', '2024-11-19 00:23:16');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -152,6 +154,18 @@ ALTER TABLE `jogok`
   ADD PRIMARY KEY (`Jog_id`);
 
 --
+-- A tábla indexei `kapcsolat`
+--
+ALTER TABLE `kapcsolat`
+  ADD PRIMARY KEY (`Kapcsolat_Id`);
+
+--
+-- A tábla indexei `uzenofal`
+--
+ALTER TABLE `uzenofal`
+  ADD PRIMARY KEY (`Uzenet_Id`);
+
+--
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
 
@@ -159,13 +173,25 @@ ALTER TABLE `jogok`
 -- AUTO_INCREMENT a táblához `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  MODIFY `Felhasznalo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Felhasznalo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT a táblához `jogok`
 --
 ALTER TABLE `jogok`
   MODIFY `Jog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT a táblához `kapcsolat`
+--
+ALTER TABLE `kapcsolat`
+  MODIFY `Kapcsolat_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT a táblához `uzenofal`
+--
+ALTER TABLE `uzenofal`
+  MODIFY `Uzenet_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
