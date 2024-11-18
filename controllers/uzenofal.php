@@ -5,6 +5,13 @@ class Uzenofal_Controller
    
     public function main(array $vars)
     {
+
+        if($_SESSION['userlevel'] == '_1_'){
+            $view = new View_Loader('home_main');
+            
+        }else{
+
+
         include_once(SERVER_ROOT.'models/uzenofal_model.php');
         $uzenofalModel = new Uzenofal_Model;
 
@@ -18,16 +25,8 @@ class Uzenofal_Controller
 
         $view->assign('messages', $messages);
     }
-
-    public function sendMessage(array $vars)
-    {
-        $uzenofalModel = new Uzenofal_Model;
-
-        // Check if a message exists in $vars
-        if (isset($vars['message'])) {
-            $uzenofalModel->sendMessage($vars);
-        }
-        
-        
     }
+    
+
+
 }

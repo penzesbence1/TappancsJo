@@ -2,10 +2,21 @@
 
 class Uzenofalkuldes_Controller
 {
+
+    
     public $baseName = 'uzenofal';  // meghatározni, hogy melyik oldalon vagyunk
+
+
+    
+
 
     public function main(array $vars) // a router által továbbított paramétereket kapja
     {
+
+        if($_SESSION['userlevel'] == '_1_'){
+        $view = new View_Loader('home_main');
+        
+    }else{
         // Ellenőrizzük, hogy a form elküldésre került-e
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Model betöltése
@@ -32,9 +43,11 @@ class Uzenofalkuldes_Controller
 
 
             $view->assign('messages', $messages);
-            // Betöltjük a nézetet
-            $view = new View_Loader($this->baseName . '_main');
+           
+           
             
         }
+
+    }
     }
 }
