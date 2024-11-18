@@ -192,6 +192,13 @@ form label {
 }
 
 
+#user {
+
+    z-index: 1000;
+    margin-left: -100px;
+}
+
+
 label {
     margin-top: 10px;
 }

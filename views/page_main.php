@@ -8,8 +8,10 @@
     </head>
     <body>
         <header>
-            <div id="user"><em><?= $_SESSION['userlastname']." ".$_SESSION['userfirstname'] ?></em></div>
-            <h1 class="header">Tappancs</h1>
+        <?php if (isset($_SESSION['userlevel']) && $_SESSION['userlevel'] != '_1_'): ?>
+            <div id="user"><em>Bejelentkezett: <?= $_SESSION['userlastname']." ".$_SESSION['userfirstname']. " ( " .$_SESSION['username']. " ) " ?></em></div>
+            <?php endif; ?>
+             <h1 class="header">Tappancs</h1>
         </header>
         
         <aside>

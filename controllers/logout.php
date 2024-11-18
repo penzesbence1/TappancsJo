@@ -10,6 +10,9 @@ class Logout_Controller
 		//a modellben bel�pteti a felhaszn�l�t
 		$retData = $kilepesModel->get_data(); 
 		//bet�ltj�k a n�zetet
+		$_SESSION['username'] = '';
+		$_SESSION['userlastname'] = '';
+		$_SESSION['userfirstname'] = '';
 		$view = new View_Loader($this->baseName.'_main');
 		//�tadjuk a lek�rdezett adatokat a n�zetnek
 		foreach($retData as $name => $value)

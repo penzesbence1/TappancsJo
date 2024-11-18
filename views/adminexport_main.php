@@ -5,12 +5,12 @@
         
         <h1>Felhasználói adatok exportálása</h1>
         <div id="kozepre">
-        <form action="export_pdf.php" method="POST" class = "data-container-export">
+        <form action="exportpdf" method="POST" class = "data-container-export">
         <button type="submit" class="exportbutton">Exportálás PDF-be</button>
     </form>
 
     <!-- Excel export gomb -->
-    <form action="export_xlsx.php" method="POST" class = "data-container-export">
+    <form action="exportxlsx" method="POST" class = "data-container-export">
         <button type="submit" class="exportbutton">Exportálás Excel-be</button>
     </form>
     </div>

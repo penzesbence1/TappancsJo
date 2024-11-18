@@ -7,7 +7,7 @@ class Beleptet_Model
 		$retData['eredmeny'] = "";
 		try {
 			$connection = Database::getConnection();
-			$sql = "select felhasznalo_id, vezeteknev, keresztnev, jelszo, jog_id from felhasznalok where felhasznalonev='".$vars['login']."'";
+			$sql = "select felhasznalo_id, vezeteknev, keresztnev, jelszo, jog_id, felhasznalonev from felhasznalok where felhasznalonev='".$vars['login']."'";
 			$stmt = $connection->query($sql);
 			$felhasznalo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			switch(count($felhasznalo)) {
@@ -20,13 +20,12 @@ class Beleptet_Model
 					{
 						$retData['eredmeny'] = "OK";
 						$retData['uzenet'] = "Kedves ".$felhasznalo[0]['vezeteknev']." ".$felhasznalo[0]['keresztnev']."!<br><br>
-											  Jó munkát kívánunk rendszerünkkel.<br><br>
-											  Az üzemeltetők";
+											  Üdvözöljük oldalunkon!";
 						$_SESSION['userid'] =  $felhasznalo[0]['felhasznalo_id'];
 						$_SESSION['userlastname'] =  $felhasznalo[0]['vezeteknev'];
 						$_SESSION['userfirstname'] =  $felhasznalo[0]['keresztnev'];
 						$_SESSION['userlevel'] = $felhasznalo[0]['jog_id'];
-						
+						$_SESSION['username'] = $felhasznalo[0]['felhasznalonev'];
 
 						Menu::setMenu();
 					}

@@ -1,13 +1,5 @@
 <?php
 
-// Üzenetek lekérdezése az adatbázisból
-$sql = "SELECT *
-        FROM kapcsolat
-        
-        ORDER BY Ido DESC";$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 
 
@@ -19,6 +11,7 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h1>Kapcsolat</h1>
         
         <!-- Üzenetek megjelenítése -->
+        <?php $messages = $viewData['messages'] ?>
         <?php if (count($messages) > 0): ?>
             <?php foreach ($messages as $message): ?>
                 <div class="message">
