@@ -14,7 +14,7 @@ class Uzenofalkuldes_Controller
 
             // A POST adatokat feldolgozzuk
             $vars = [
-                'felhasznalo_id'   => $_SESSION['id'],
+                'felhasznalo_id'   => $_SESSION['userid'],
                 'uzenet'   => htmlspecialchars($_POST['message'])
                 
             ];
@@ -24,9 +24,16 @@ class Uzenofalkuldes_Controller
 
             // Ha hibát kaptunk, akkor a login oldalra irányítunk
            
+            $messages = $uzenofalModel->getMessages();
+        
+        // Initialize the view and assign data
+         $view = new View_Loader($this->baseName . '_main');
+        
 
+
+            $view->assign('messages', $messages);
             // Betöltjük a nézetet
-            $view = new View_Loader($this->baseName.'_main');
+            $view = new View_Loader($this->baseName . '_main');
             
         }
     }

@@ -7,7 +7,7 @@
         </form>
 
         <!-- Display Messages -->
-            <?php $messages = $data['messages']?>
+            <?php $messages = $viewData['messages'] ?>
 
             <?php foreach ($messages as $message): ?>
                 <div class="message">
