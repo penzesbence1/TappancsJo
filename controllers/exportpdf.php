@@ -18,13 +18,8 @@ class Exportpdf_Controller
 			//var_dump($retData);
 
 			require('./fpdf/fpdf.php');
-
-
 			$pdf = new FPDF();
 			$pdf->AddPage();
-
-			
-			
 			$pdf->SetFont('times', '', 12);
 			$pdf->Cell(10, 10, "ID");
 			$pdf->Cell(25, 10, utf8_decode("Vezetéknév"));
@@ -34,7 +29,7 @@ class Exportpdf_Controller
 			$pdf->Cell(30, 10, utf8_decode("Telefonszám"));
 			$pdf->Cell(10, 10, utf8_decode("Jog"));
 			$pdf->Ln();
-			
+		
 			foreach($retData['felhasznalok'] as $row){
 				
 				$pdf->Cell(10, 10, utf8_decode($row['userid']), 1);
@@ -47,7 +42,6 @@ class Exportpdf_Controller
 				$pdf->Cell(10, 10, utf8_decode($row['userlevel']), 1);
 				$pdf->Ln();
 			}
-			
 			// PDF kimenet
 			$pdf->Output('D', 'felhasznalok.pdf'); // Letöltés
 

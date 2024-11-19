@@ -6,10 +6,6 @@ class Uzenofalkuldes_Controller
     
     public $baseName = 'uzenofal';  // meghatározni, hogy melyik oldalon vagyunk
 
-
-    
-
-
     public function main(array $vars) // a router által továbbított paramétereket kapja
     {
 
@@ -26,8 +22,7 @@ class Uzenofalkuldes_Controller
             // A POST adatokat feldolgozzuk
             $vars = [
                 'felhasznalo_id'   => $_SESSION['userid'],
-                'uzenet'   => htmlspecialchars($_POST['message'])
-                
+                'uzenet'   => htmlspecialchars($_POST['message']) 
             ];
 
             // A modellben elvégezzük az adatok mentését
@@ -39,13 +34,7 @@ class Uzenofalkuldes_Controller
         
         // Initialize the view and assign data
          $view = new View_Loader($this->baseName . '_main');
-        
-
-
             $view->assign('messages', $messages);
-           
-           
-            
         }
 
     }
