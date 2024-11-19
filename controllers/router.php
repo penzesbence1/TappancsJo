@@ -13,7 +13,7 @@ include(SERVER_ROOT . 'includes/menu.inc.php');
 // Az elsõ eleme a megtekinteni kívánt oldal neve, a második az aloldal (almenü ponthoz
 // tartozó oldal) neve vagy paraméter lehet.
 
-$page = "login";
+$page = "home";
 $subpage = "";
 $vars = array();
 
